@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+app:
+  frontend-url: ${FRONTEND_URL:http://localhost:3000}
+
+  currency: "INR"
+  currency-symbol: "₹"
+
+  blockchain:
+    mode: ${BLOCKCHAIN_MODE:SEPOLIA}
+    sepolia:
+      rpc-url: ${SEPOLIA_RPC_URL:https://rpc.sepolia.org}
+      private-key: ${WEB3_PRIVATE_KEY:}
+      contract-address: ${CONTRACT_ADDRESS:0xb36c012681cd39De1df076e359E22ba2237A56d6}
+      chain-id: ${CHAIN_ID:11155111}
+
+  ollama:
+    base-url: ${OLLAMA_BASE_URL:http://host.docker.internal:11434}
+    model: ${OLLAMA_MODEL:deepseek-r1:7b}
+    connect-timeout-seconds: 3
+    read-timeout-seconds: 15
+
+logging:
+  level:
+    com.agentpay: INFO
+    org.springframework.web: INFO

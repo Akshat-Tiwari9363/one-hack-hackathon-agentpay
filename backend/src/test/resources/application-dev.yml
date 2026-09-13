@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+app:
+  frontend-url: http://localhost:3000
+  currency: "INR"
+  currency-symbol: "₹"
+
+  blockchain:
+    mode: MOCK
+
+logging:
+  level:
+    com.agentpay: INFO

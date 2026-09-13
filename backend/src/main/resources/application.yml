@@ -1,0 +1,59 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: agentpay-backend
+  datasource:
+    url: jdbc:h2:mem:agentpaydb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always
+
+app:
+  frontend-url: ${FRONTEND_URL:http://localhost:3000}
+  currency: "INR"
+  currency-symbol: "₹"
+  ollama:
+    base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+    model: ${OLLAMA_MODEL:deepseek-r1:7b}
+    connect-timeout-seconds: 3
+    read-timeout-seconds: 15
+  blockchain:
+    mode: ${BLOCKCHAIN_MODE:SEPOLIA} # Options: MOCK | SEPOLIA
+    sepolia:
+      rpc-url: ${SEPOLIA_RPC_URL:https://rpc.sepolia.org}
+      private-key: ${WEB3_PRIVATE_KEY:}
+      contract-address: ${CONTRACT_ADDRESS:0xb36c012681cd39De1df076e359E22ba2237A56d6}
+      chain-id: ${CHAIN_ID:11155111}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
